@@ -14,7 +14,9 @@ $ARGUMENTS
 3. Read `.claude/workflow/$ARGUMENTS/plan.md` — understand original intent.
 4. Read `CLAUDE.md` — violations of project conventions are always issues.
 5. Review the implemented code.
-6. Final sanity check: re-read the Goal from plan.md. Ask yourself: if this implementation is correct, does it actually solve the stated problem? If not — this is a critical issue, severity=critical, route to clarifier with an explanation of the mismatch.
+6. **Before raising any medium/major/critical issue about missing code:** read the actual current file, not just the PR diff. A component, function, or config may already exist from a previous commit. "Not changed in this PR" ≠ "absent from the codebase."
+7. **Verify search results before acting on them.** If a Grep/search returns empty, confirm with a second method (e.g., `git show HEAD:path/to/file | grep term`) before concluding the code is absent. Empty search results from incorrect regex are a common false negative — ripgrep uses `|` for OR, not `\|`.
+8. Final sanity check: re-read the Goal from plan.md. Ask yourself: if this implementation is correct, does it actually solve the stated problem? If not — this is a critical issue, severity=critical, route to clarifier with an explanation of the mismatch.
 
 ## Severity levels
 
