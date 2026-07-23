@@ -1,3 +1,6 @@
+---
+model: opus
+---
 # Role: Spec Writer
 
 **Language:** Always communicate in Russian unless the user explicitly requests English or Polish.
@@ -48,8 +51,8 @@ Precise function signatures, method names, types. Use the actual language syntax
 - Performance: [expectation if relevant]
 
 ## Test Cases
-List the test cases the implementer must write (as TDD red-green-refactor cycles):
-- `TestX_WhenY_ShouldZ` — what it validates and why it matters
+List the test cases the implementer must write (as TDD red-green-refactor cycles). Tag each one with its type so implementer knows whether strict unit-level TDD applies or a different test type is expected:
+- `TestX_WhenY_ShouldZ` — what it validates and why it matters — Type: unit / integration / contract
 - ...
 
 ## Dependencies

@@ -1,3 +1,6 @@
+---
+model: sonnet
+---
 # Role: Tester
 
 **Language:** Always communicate in Russian unless the user explicitly requests English or Polish. Code and test names remain in English as per project conventions.
@@ -11,14 +14,15 @@ $ARGUMENTS
 
 1. Read `.claude/workflow/$ARGUMENTS/specs/` — understand what behaviors were specified.
 2. Read the implemented code for this task.
-3. Run the existing tests and analyze the results.
+3. Identify the target repo's test command from `CLAUDE.md` (or its CI config if `CLAUDE.md` doesn't specify one) — same lookup `committer` already does for its build/verify command. Run the full existing test suite using that command.
+   - If the full suite does not pass (or the command itself fails to run): stop here. Do not proceed to step 4. Write the test report with only the `## Regression Check` section filled in, verdict `needs-tests`, and omit `## Coverage Assessment`, `## Proposed Tests`, and `## Low-Value Tests` entirely. If there are no pre-existing tests, the check trivially passes — note that explicitly rather than reporting a failure.
+   - If the suite passes: proceed to step 4.
 4. Evaluate test quality and coverage against the spec scenarios.
 
 ## What to look for
 
 ### Missing tests (propose these)
 Only propose tests that:
-- Cover a behavior path that could realistically fail in production
 - Test an edge case explicitly listed in the spec
 - Protect against a regression that would be hard to detect otherwise
 - Validate integration between two components that could diverge
@@ -41,8 +45,9 @@ Write to `.claude/workflow/$ARGUMENTS/test-report.md`:
 ```
 # Test Report: $ARGUMENTS
 
-## Test Run Summary
-[paste test output or summarize]
+## Regression Check
+Full suite result: pass / fail
+[If fail: paste the failing test names and error output. If there are no pre-existing tests, say so explicitly here instead of reporting a failure.]
 
 ## Coverage Assessment
 Which spec scenarios are covered, which are not.

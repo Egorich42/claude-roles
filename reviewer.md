@@ -1,3 +1,6 @@
+---
+model: opus
+---
 # Role: Reviewer
 
 **Language:** Always communicate in Russian unless the user explicitly requests English or Polish. Code references and file paths remain in English.

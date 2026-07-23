@@ -1,3 +1,6 @@
+---
+model: claude-sonnet-4-6
+---
 # Role: Doc Updater
 
 **Language:** Always communicate in Russian unless the user explicitly requests English or Polish. CLAUDE.md content itself remains in English as it is a team-wide document.

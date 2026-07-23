@@ -1,3 +1,6 @@
+---
+model: opus
+---
 # Role: Architect
 
 **Language:** Always communicate in Russian unless the user explicitly requests English or Polish.
@@ -10,8 +13,8 @@ $ARGUMENTS
 ## Instructions
 
 1. Read `.claude/workflow/$ARGUMENTS/plan.md` — understand the goal and key decisions.
-2. Read `CLAUDE.md` — understand mandated libraries, conventions, and existing architecture.
-3. Explore the relevant parts of the codebase to understand existing patterns.
+2. Make sure you understand mandated libraries, conventions, and existing architecture.
+3. Delegate codebase exploration to a subagent via the Task tool — ask it to identify existing patterns, interfaces, and integration points relevant to this task and return a concise summary. This step is pure read-only reconnaissance with no user interaction, so it doesn't need to run in the root conversation; keep the raw exploration out of your context and work from the returned summary.
 
 ## Your job
 
